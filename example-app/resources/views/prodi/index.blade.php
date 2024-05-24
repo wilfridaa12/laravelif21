@@ -37,5 +37,16 @@
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+<script>
+  Swal.fire({
+    title: "Good Job",
+    text: "{{session('success')}}",
+    icon: "success"
+  });
+</script>
+@endif
 @endsection 
 {{-- end sec untuk lebih dr satu baris --}}

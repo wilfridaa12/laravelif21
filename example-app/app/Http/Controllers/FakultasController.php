@@ -39,7 +39,7 @@ class FakultasController extends Controller
         // simpan kedalam tabel fakultas
         Fakultas::create($val);
         // redirect ke tabel fakultas
-        return redirect()->route('fakultas.index');
+        return redirect()->route('fakultas.index')->with('success', $val['nama'] . ' Berhasil Disimpan');
     }
 
     /**
