@@ -12,7 +12,8 @@ class KotaController extends Controller
      */
     public function index()
     {
-        //
+        $kota = Kota::all(); //select*kota
+        return view('kota.index')->with('kota', $kota);
     }
 
     /**
@@ -28,7 +29,13 @@ class KotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'id'=> 'required|unique:kotas',
+            'nama_kota' => 'required',
+            'singkatan' => 'required'
+        ]);
+        Kota::create($val);
+        return redirect()->route('kota.index')->with('success', $val['nama_kota'] . ' Berhasil Disimpan');
     }
 
     /**
