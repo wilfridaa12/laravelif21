@@ -11,7 +11,8 @@
         <p class="card-description">
           Formulir Tambah Mahasiswa
         </p>
-        <form class="forms-sample" action="{{ route('mahasiswa.store')}}" method="post" autocomplete="off">
+        <form class="forms-sample" action="{{ route('mahasiswa.store')}}" method="post" autocomplete="off"
+        enctype="multipart/form-data">
           @csrf
 
           <div class="form-group">
@@ -72,8 +73,8 @@
             @enderror
           </div>
           <div class="form-group">
-            <label for="url_foto">URL Foto</label>
-            <input type="text" name="url_foto" id="url_foto" value="{{ old('url_foto') }}" class="form-control">
+            <label for="url_foto">File Foto</label>
+            <input type="file" name="url_foto" id="" class="form-control">
             @error('url_foto')
             <span class="text-danger">{{ $message }}</span>
             @enderror

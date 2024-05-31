@@ -17,6 +17,7 @@
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>Foto</th>
                 <th>NPM</th>
                 <th>Nama Mahasiswa</th>
                 <th>Prodi</th>
@@ -26,10 +27,19 @@
             <tbody>
               @foreach ($mahasiswa as $item)
               <tr>
-                <td>{{ $item->npm }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->prodi->nama}}</td>
-                <td>{{ $item->kota->nama}}</td>
+                <td><img src="{{url('foto/'.$item['url_foto'])}}" alt=""></td>
+                <td>{{ $item['npm'] }}</td>
+                <td>{{ $item['nama'] }}</td>
+                <td>{{ $item['prodi']['nama']}}</td>
+                <td>{{ $item['kota']['nama']}}</td>
+                <td><a href="{{route ('mahasiswa.show', $item['id'])}}" class="btn btn-sm btn-info btn-rounded">Show</a>
+                  <form action="{{route('mahasiswa.destroy', $item->id)}}" method="post">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-sm btn-danger btn-rounded">Hapus</button>
+                  </form>
+                </td>
+               
               </tr>
               @endforeach
             </tbody>
