@@ -328,6 +328,45 @@
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
   <script src="{{url('js/dashboard.js')}}"></script>
+      {{-- jquery --}}
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+    {{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+    <script>
+    Swal.fire({
+      title: "Good Job",
+      text: "{{session('success')}}",
+      icon: "success"
+    });
+    </script>
+    @endif
+
+    <script type="text/javascript">
+
+    $('.show_confirm').click(function(event) {
+        var form =  $(this).closest("form");
+        var nama = $(this).data("nama");
+        event.preventDefault();
+        Swal.fire({
+          title: `Kamu yakin ingin menghapus data ${nama}?`,
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit();
+          }
+        });
+    });
+
+    </script>
   <!-- End custom js for this page-->
 </body>
 

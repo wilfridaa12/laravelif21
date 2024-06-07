@@ -33,10 +33,11 @@
                 <td>{{ $item['prodi']['nama']}}</td>
                 <td>{{ $item['kota']['nama']}}</td>
                 <td><a href="{{route ('mahasiswa.show', $item['id'])}}" class="btn btn-sm btn-info btn-rounded">Show</a>
-                  <form action="{{route('mahasiswa.destroy', $item->id)}}" method="post">
+                  <a href="{{route ('mahasiswa.edit', $item['id'])}}" class="btn btn-warning btn-sm btn-info btn-rounded">Edit</a>
+                  <form action="{{route('mahasiswa.destroy', $item->id)}}" method="post" style="display: inline">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-danger btn-rounded">Hapus</button>
+                    <button type="submit" class="btn btn-sm btn-danger btn-rounded show_confirm" data-toggle="tooltip" data-nama="{{$item['nama']}}" title='Hapus'>Hapus</button>
                   </form>
                 </td>
                
@@ -50,14 +51,5 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (session('success'))
-<script>
-  Swal.fire({
-    title: "Good Job",
-    text: "{{session('success')}}",
-    icon: "success"
-  });
-</script>
-@endif
+
 @endsection
