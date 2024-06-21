@@ -32,6 +32,10 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->user()->cannot('create', Prodi::class)) {
+            // return redirect()->route('fakultas.index')->with('error', 'Anda tidak memiliki akses untuk menambah data');
+            abort(403, 'Anda tidak memiliki akses untuk menambah data');
+        }
         // dd($request);
         // validasi data input
         $val = $request->validate([
